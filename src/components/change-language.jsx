@@ -33,12 +33,12 @@ const changeLanguage = () => {
             </a>
 
             <div ref={ref} className={`dropdown-menu dropdown-menu-end ${show ? 'show' : undefined }`}>
-                <a className="dropdown-item fw-bolder" style={{textAlign : 'right'}} onClick={() => changeLanguage("en")}>
+                <a className="dropdown-item fw-bolder d-flex align-items-center gap-2" style={{textAlign : language === 'fa' ? "right" : "left"}}  onClick={() => changeLanguage("en")}>
                     <img src={flagUsa} alt="flagUSA" className='ms-2'/>
                     <span className="align-middle"> انگلیسی</span>
                 </a>
-                <a className="dropdown-item fw-bolder" style={{textAlign : 'right'}} onClick={() => changeLanguage('fa')}>
-                    <img src={flagFa} alt="flagUSA" className='ms-3'/>
+                <a className="dropdown-item fw-bolder d-flex align-items-center gap-2" style={{textAlign : language === 'fa' ? "right" : "left"}} onClick={() => changeLanguage('fa')}>
+                    <img src={flagFa} alt="flagUSA" className='ms-2'/>
                     <span className="align-middle"> فارسی </span>
                 </a>
             </div>

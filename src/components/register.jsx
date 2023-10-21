@@ -49,15 +49,15 @@ const register = () => {
     <>
       <div className="text-center mt-4">
         <img src={logo} style={{ height: "100px" }} />
-        <h1 className="h2">پلتفرم آموزش آنلاین</h1>
+        <h1 className="h2"> {t('register.title')} </h1>
         <p className="lead">
-          جهت استفاده از ویژگی های پلتفرم آموزش آنلاین کلاسبن ثبت نام کنید
+           {t('register.introMessage')}          
         </p>
         <p className="lead">
-          قبلا ثبت نام کرده اید؟
+          {t('register.register')}
           <Link to="/login" className="me-2">
     
-            وارد شوید{" "}
+          {"   "} {t('register.signin')}{"   "}
           </Link>
         </p>
       </div>
@@ -67,10 +67,10 @@ const register = () => {
           <div className="m-sm-4">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-3">
-                <label className="form-label">موبایل</label>
+                <label className="form-label">{t('register.mobile')}</label>
                 <input
                   {...register("mobile", {
-                    required: "موبایل الزامی است",
+                    required: `${t("register.validation.mobileRequired")}`,
                     minLength: 11,
                     maxLength: 11,
                   })}
@@ -87,14 +87,14 @@ const register = () => {
                   (errors.mobile.type === "minLength" ||
                     errors.mobile.type === "maxLength") && (
                     <p className="text-danger small fw-bolder mt-1">
-                      موبایل باید 11 رقم باشد
+                      {t('register.validation.mobileLength')}
                     </p>
                   )}
               </div>
               <div className="mb-3">
-                <label className="form-label">رمز عبور</label>
+                <label className="form-label">{t('register.password')} </label>
                 <input
-                  {...register("password", { required: "رمز عبور الزامی است" })}
+                  {...register("password", { required: `${t('register.validation.passwordRequired')}` })}
                   className={`form-control form-control-lg ${
                     errors.password && "is-invalid"
                   }`}
@@ -107,13 +107,13 @@ const register = () => {
                 )}
               </div>
               <div className="mb-3">
-                <label className="form-label">تکرار رمز عبور</label>
+                <label className="form-label">{t('register.repeatPassword')}</label>
                 <input
                   {...register("confirmPassword", {
-                    required: "تکرار رمز عبور الزامی است",
+                    required: `${t('register.validation.repeatPasswordRequired')}`,
                     validate: (value) => {
                       if (watch("password") !== value) {
-                        return "عدم تطابق با رمز عبور وارد شده";
+                        return `${t('register.validation.notMatching')}`;
                       }
                     },
                   })}
@@ -137,14 +137,14 @@ const register = () => {
               </div>
               <div className="text-center mt-3">
                 <button type="submit" disabled={isSubmitting} className="btn btn-lg btn-primary">
-                  {t('register.register')}
-                  {/* {isSubmitting ? 'در حال انجام عملیات ' : 'ثیت نام کنید ' } */}
+                  {/* {t('register.register')} */}
+                  {isSubmitting ? t("register.saving") : t("register.register")}
                 </button>
               </div>
               {
                 isSuccessOperation && (
                   <div className="alert alert-success text-success p-2 mt-4">
-                    عملیات با موفقیت انجام شد به صفحه ورود منتقل میشوید
+                    {t('successOperation')}
                   </div>
                 )
               }
