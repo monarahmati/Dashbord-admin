@@ -9,21 +9,24 @@ const changeLanguage = () => {
     const [show , setShow ] = useState(false)
     const ref = useRef()
     const { language , changeLanguage } = useAppContext()
+    
+    useEffect(() => {
+        setShow(false)
+    }, [language])
 
     useEffect(() => {
-
         const checkIfClickOutside = (e) => {
             if (show && ref.current && !ref.current.contains(e.target)){
                 setShow(!show)
             }
         }
-
         document.addEventListener('mousedown' , checkIfClickOutside)
          return () => {
             document.removeEventListener('mousedown' , checkIfClickOutside)
          }
-
     } , [show])
+
+
 
 
     return (

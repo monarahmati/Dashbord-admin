@@ -137,8 +137,11 @@ const register = () => {
               </div>
               <div className="text-center mt-3">
                 <button type="submit" disabled={isSubmitting} className="btn btn-lg btn-primary">
-                  {/* {t('register.register')} */}
-                  {isSubmitting ? t("register.saving") : t("register.register")}
+
+                {
+                  isSubmitting ? t('register.saving') : t('register.register') 
+                }
+
                 </button>
               </div>
               {
@@ -152,7 +155,7 @@ const register = () => {
                 routeErrors && (
                   <div className="alert alert-danger text-danger p-2 mt-4">
                     { 
-                      routeErrors.response?.data.map( error => <p className="mb-0">{error.description}</p>) 
+                      routeErrors.response?.data.map( error => <p className="mb-0">{t(`register.validation.${error.code}`)}</p>) 
                     }
                   </div>
                 )
@@ -165,12 +168,13 @@ const register = () => {
   );
 };
 
-export default register;
-
-
 export async function registerAction ({request}){
   const formData = await request.formData();
   const data = Object.fromEntries(formData)
   const response = await httpService.post('/Users' , data);
   return response.status === 200;
 }
+
+
+export default register;
+
